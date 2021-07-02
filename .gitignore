@@ -1,0 +1,14 @@
+# Folders
+**/venv
+**/__pycache__
+**/node_modules
+**/.vscode
+**/media
+
+# Files
+.DS_Store
+dist
+dist-ssr
+*.local
+*.sqlite3
+*.env
