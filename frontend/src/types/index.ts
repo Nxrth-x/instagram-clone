@@ -11,6 +11,7 @@ export interface iComment {
 }
 
 export interface iPost {
+  id: string
   user: iUser
   image: string
   description: string

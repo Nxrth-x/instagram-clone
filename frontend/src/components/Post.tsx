@@ -24,8 +24,8 @@ export default function Post({
 }: PostProps) {
   return (
     <div className="md:border rounded mb-4 md:mb-8">
-      <div className="px-4 py-2 flex items-center justify-between">
-        <div className="flex gap-4">
+      <div className="p-4 flex items-center justify-between">
+        <div className="flex gap-2">
           <img
             src={post.user.image}
             alt={post.user.username}

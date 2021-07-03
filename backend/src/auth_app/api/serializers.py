@@ -11,6 +11,7 @@ class CustomUserRegistrationSerializer(serializers.ModelSerializer):
             "last_name",
             "email",
             "password",
+            "image",
         ]
 
         extra_kwargs = {
@@ -26,6 +27,7 @@ class CustomUserRegistrationSerializer(serializers.ModelSerializer):
             last_name=validated_data["last_name"],
             email=validated_data["email"],
             password=validated_data["password"],
+            image=validated_data["image"],
         )
 
         user.save()

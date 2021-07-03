@@ -6,7 +6,7 @@ import { FiHeart } from 'react-icons/fi'
 export default function Header() {
   return (
     <header className="border py-2 sticky top-0 bg-white">
-      <div className="px-4 lg:px-0 max-w-[975px] mx-auto flex items-center justify-between">
+      <div className="px-4 lg:px-0 max-w-[900px] mx-auto flex items-center justify-between">
         <img
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="Instagram"

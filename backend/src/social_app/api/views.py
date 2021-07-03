@@ -1,7 +1,9 @@
 from rest_framework import generics, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-from social_app.models import Post, Comment
-from social_app.api.serializers import CommentSerializer, PostSerializer
+from social_app.models import Like, Post, Comment
+from social_app.api.serializers import CommentSerializer, PostSerializer, LikeSerializer
 
 from social_app.api.permissions import IsCreatorOrReadOnly
 
@@ -37,3 +39,35 @@ class CommentCreateAPIView(generics.CreateAPIView):
         serializer.save(user=user, post=post)
 
         return serializer
+
+
+class LikeCreateAPIView(APIView):
+    def post(self, request, post_id):
+        user = request.user
+        post = Post.objects.get(pk=post_id)
+        likes_queryset = Like.objects.filter(user=user, post=post)
+
+        if likes_queryset.exists():
+            like = Like.objects.get(user=user, post=post)
+            like.delete()
+            return Response({}, status=204)
+
+        Like.objects.create(user=user, post=post)
+
+        return Response(
+            {
+                "detail": "Successfully liked",
+            },
+            status=200,
+        )
+
+    def handle_exception(self, exc):
+        if type(exc) == Post.DoesNotExist:
+            return Response(
+                {
+                    "detail": "Post does not exist",
+                },
+                status=404,
+            )
+
+        return Response({"detail": "Internal server error"}, status=500)
